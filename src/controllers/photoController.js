@@ -13,13 +13,13 @@ const getAllPhotos = async (req, res) => {
       SELECT ph.*, b.name AS brand_name, b.external_link AS brand_external_link, c.name AS category_name
       FROM photos ph
       LEFT JOIN brands b ON ph.brand_id = b.id
-      LEFT JOIN categories c ON ph.category_id = c.id
+      LEFT JOIN categories c ON b.category_id = c.id
     `;
     const params = [];
     const conditions = [];
 
     if (category_id) {
-      conditions.push('ph.category_id = ?');
+      conditions.push('b.category_id = ?');
       params.push(category_id);
     }
     if (brand_id) {
