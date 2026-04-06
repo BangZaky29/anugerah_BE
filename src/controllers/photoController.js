@@ -10,7 +10,7 @@ const getAllPhotos = async (req, res) => {
     const { category_id, brand_id } = req.query;
 
     let query = `
-      SELECT ph.*, b.name AS brand_name, c.name AS category_name
+      SELECT ph.*, b.name AS brand_name, b.external_link AS brand_external_link, c.name AS category_name
       FROM photos ph
       LEFT JOIN brands b ON ph.brand_id = b.id
       LEFT JOIN categories c ON ph.category_id = c.id

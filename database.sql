@@ -21,11 +21,13 @@ CREATE TABLE IF NOT EXISTS categories (
 
 -- ─── TABLE: brands ───────────────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS brands (
-  id          INT           NOT NULL AUTO_INCREMENT,
-  category_id INT           NOT NULL,
-  name        VARCHAR(100)  NOT NULL,
-  description TEXT,
-  created_at  TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  id            INT           NOT NULL AUTO_INCREMENT,
+  category_id   INT           NOT NULL,
+  name          VARCHAR(100)  NOT NULL,
+  description   TEXT,
+  external_link VARCHAR(500)  DEFAULT NULL,
+  type          VARCHAR(50)   DEFAULT NULL,
+  created_at    TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   KEY idx_brands_category (category_id),
   CONSTRAINT fk_brand_category
@@ -75,50 +77,50 @@ INSERT IGNORE INTO categories (name, description) VALUES
   ('Product Support',   'Heavy machinery and core equipment for large-scale operations.');
 
 -- ─── SEED: brands (Machine Products) ────────────────────────────────────────
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'DN SOLUTIONS', 'Modern manufacturing solutions.'        FROM categories WHERE name = 'Machine Products';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'MAKINO',       'Extreme precision engineering.'          FROM categories WHERE name = 'Machine Products';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'HNK',          'Specialized heavy-duty machines.'        FROM categories WHERE name = 'Machine Products';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'KERTZ',        'High-end industrial machinery.'          FROM categories WHERE name = 'Machine Products';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'TONE FAN',     'Manufacturing drilling specialists.'      FROM categories WHERE name = 'Machine Products';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'MAZAK',        'Global leader in advanced CNC machine tools.' FROM categories WHERE name = 'Machine Products';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'BROTHER',      'Compact, high-productivity CNC machining.' FROM categories WHERE name = 'Machine Products';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'WELE',         'Large-scale, heavy-duty CNC machinery.'   FROM categories WHERE name = 'Machine Products';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'SODICK',       'Pioneer in precision Electrical Discharge Machining.' FROM categories WHERE name = 'Machine Products';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'HYPERTHERM',   'World leader in industrial cutting solutions.' FROM categories WHERE name = 'Machine Products';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'DN SOLUTIONS', 'Modern manufacturing solutions.', 'https://www.dn-solutions.com/main.do', 'Mesin' FROM categories WHERE name = 'Machine Products';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'MAKINO',       'Extreme precision engineering.', 'https://www.makino.com/', 'Mesin' FROM categories WHERE name = 'Machine Products';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'HNK',          'Specialized heavy-duty machines.', 'http://en.hnkkorea.com/sub01/03_01.php', 'Mesin' FROM categories WHERE name = 'Machine Products';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'KERTZ',        'High-end industrial machinery.', NULL, 'Mesin' FROM categories WHERE name = 'Machine Products';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'TONE FAN',     'Manufacturing drilling specialists.', NULL, 'Mesin' FROM categories WHERE name = 'Machine Products';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'MAZAK',        'Global leader in advanced CNC machine tools.', 'https://www.mazak.com/id-en/', 'Mesin' FROM categories WHERE name = 'Machine Products';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'BROTHER',      'Compact, high-productivity CNC machining.', 'https://machinetool.global.brother/en-eu', 'Mesin' FROM categories WHERE name = 'Machine Products';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'WELE',         'Large-scale, heavy-duty CNC machinery.', 'http://www.welegroup.com/en/', 'Mesin' FROM categories WHERE name = 'Machine Products';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'SODICK',       'Pioneer in precision Electrical Discharge Machining.', 'https://sodick.com/?utm_source=google&utm_campaign=%7Bcampaignname%7D&utm_medium=d&utm_content=194866989059&utm_term&gad_source=5&gad_campaignid=23162563870&gclid=EAIaIQobChMI7bua34jIkwMViXpvBB02ATBhEAEYASAAEgJltfD_BwE', 'Electrical' FROM categories WHERE name = 'Machine Products';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'HYPERTHERM',   'World leader in industrial cutting solutions.', 'https://www.hypertherm.com/', 'Mechanical' FROM categories WHERE name = 'Machine Products';
 
 -- ─── SEED: brands (Tools Products) ──────────────────────────────────────────
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'TOPTUL', 'Chrome Vanadium professional tools.'    FROM categories WHERE name = 'Tools Products';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'ELORA',  'High-end German manufacturing quality.' FROM categories WHERE name = 'Tools Products';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'TEKIRO', 'Leading industrial tool brand.'         FROM categories WHERE name = 'Tools Products';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'MAKITA', 'Global leader in power tools.'          FROM categories WHERE name = 'Tools Products';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'BOSCH',  'Reliable German engineering.'           FROM categories WHERE name = 'Tools Products';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'HYTORC', 'The world primary bolting solution.'    FROM categories WHERE name = 'Tools Products';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'TOPTUL', 'Chrome Vanadium professional tools.', 'https://www.toptul.com/en', 'Tools' FROM categories WHERE name = 'Tools Products';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'ELORA',  'High-end German manufacturing quality.', 'https://www.elora.de/en/', 'Tools' FROM categories WHERE name = 'Tools Products';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'TEKIRO', 'Leading industrial tool brand.', 'https://tekiro.com/', 'Tools' FROM categories WHERE name = 'Tools Products';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'MAKITA', 'Global leader in power tools.', 'https://makitatools.com/', 'Tools' FROM categories WHERE name = 'Tools Products';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'BOSCH REXROTH',  'Reliable German engineering.', 'https://www.boschrexroth.com/en/id/', 'Tools' FROM categories WHERE name = 'Tools Products';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'HYTORC', 'The world primary bolting solution.', 'https://www.hytorc.com/id/', 'Tools' FROM categories WHERE name = 'Tools Products';
 
 -- ─── SEED: brands (Product Support) ─────────────────────────────────────────
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'CATERPILLAR', 'Construction and mining giants.'   FROM categories WHERE name = 'Product Support';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'KOMATSU',     'High-performance heavy equipment.' FROM categories WHERE name = 'Product Support';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'CUMMINS',     'Advanced power solutions.'         FROM categories WHERE name = 'Product Support';
-INSERT IGNORE INTO brands (category_id, name, description)
-SELECT id, 'LINCOLN',     'Industrial maintenance experts.'   FROM categories WHERE name = 'Product Support';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'CATERPILLAR', 'Construction and mining giants.', NULL, 'Mesin'   FROM categories WHERE name = 'Product Support';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'KOMATSU',     'High-performance heavy equipment.', NULL, 'Mesin' FROM categories WHERE name = 'Product Support';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'CUMMINS',     'Advanced power solutions.', NULL, 'Mesin'         FROM categories WHERE name = 'Product Support';
+INSERT IGNORE INTO brands (category_id, name, description, external_link, type)
+SELECT id, 'LINCOLN',     'Industrial maintenance experts.', NULL, 'Tools'   FROM categories WHERE name = 'Product Support';
 
 -- ─── SEED: products (Machine Products) ──────────────────────────────────────
 INSERT IGNORE INTO products (brand_id, name)
@@ -163,8 +165,8 @@ JOIN (
   SELECT 'MAKITA',           'Cordless Drill'            UNION ALL
   SELECT 'MAKITA',           'Grinder'                   UNION ALL
   SELECT 'MAKITA',           'Circular Saw'              UNION ALL
-  SELECT 'BOSCH',            'Power Tools'               UNION ALL
-  SELECT 'BOSCH',            'Measuring Tools'           UNION ALL
+  SELECT 'BOSCH REXROTH',    'Power Tools'               UNION ALL
+  SELECT 'BOSCH REXROTH',    'Measuring Tools'           UNION ALL
   SELECT 'HYTORC',           'Hydraulic Torque Wrench'   UNION ALL
   SELECT 'HYTORC',           'Bolt Tensioners'
 ) AS p ON b.name = p.bname;
